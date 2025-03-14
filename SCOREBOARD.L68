@@ -1,0 +1,164 @@
+00035FCE Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 27/01/2023 19:38:06
+
+00000000                             1  *===============================================================================
+00000000                             2  * TITLE       : SCOREBOARD
+00000000                             3  * WRITTEN BY  : Eduardo Bonnín Narváez y Vicenç Servera Ferrer
+00000000                             4  * DATE        : 16.01.2023
+00000000                             5  * DESCRIPTION : Código relacionado con la inicialización e impresión del score-
+00000000                             6  *               board en pantalla.
+00000000                             7  *===============================================================================
+00000000                             8  
+00000000                             9  ; ------------------------------------------------------------------------------
+00000000                            10  SCOINIT
+00000000                            11  ; Inicializa el scoreboard.
+00000000                            12  ; INPUT    : NONE
+00000000                            13  ; OUTPUT   : NONE
+00000000                            14  ; MODIFIES : NONE
+00000000                            15  ; ------------------------------------------------------------------------------
+Line 16 ERROR: Undefined symbol
+00000000  4279 004DBD16             16              CLR.W   (SCORE)
+Line 17 ERROR: Undefined symbol
+00000006  33FC BD16 005455B8        17              MOVE.W  #VIDINIC,(VIDAS)
+0000000E  4E75                      18              RTS
+00000010                            19              
+00000010                            20  ; ------------------------------------------------------------------------------
+00000010                            21  SCOUPD
+00000010                            22  ; Actualiza el scoreboard.
+00000010                            23  ; INPUT    : NONE
+00000010                            24  ; OUTPUT   : NONE
+00000010                            25  ; MODIFIES : NONE
+00000010                            26  ; ------------------------------------------------------------------------------
+00000010  4E75                      27              RTS
+00000012                            28              
+00000012                            29  ; ------------------------------------------------------------------------------
+00000012                            30  SCOPLOT
+00000012                            31  ; Pinta el scoreboard.
+00000012                            32  ; INPUT    : NONE
+00000012                            33  ; OUTPUT   : NONE
+00000012                            34  ; MODIFIES : NONE
+00000012                            35  ; ------------------------------------------------------------------------------
+00000012  48E7 C040                 36              MOVEM.L D0-D1/A1,-(A7)
+00000016                            37  
+00000016                            38              ; SET TEXT BACKGORUND COLOR
+00000016  103C 0051                 39              MOVE.B  #81,D0
+Line 40 ERROR: Undefined symbol
+0000001A  223C 004DBD16             40              MOVE.L  #SCORECOLF,D1
+00000020  4E4F                      41              TRAP    #15
+00000022                            42              
+00000022                            43              ; SET FIRST LINE POSITION
+00000022  103C 000B                 44              MOVE.B  #11,D0
+Line 45 ERROR: Undefined symbol
+00000026  323C BD16                 45              MOVE.W  #SCORECORDS,D1
+0000002A  4E4F                      46              TRAP    #15
+0000002C                            47  
+0000002C                            48              ; PRINT FIRST LINE
+0000002C  43F9 000000B4             49              LEA     .TXT1,A1
+00000032  4281                      50              CLR.L   D1
+Line 51 ERROR: Undefined symbol
+00000034  3239 004DBD16             51              MOVE.W  (SCORE),D1
+0000003A  103C 0011                 52              MOVE.B  #17,D0
+0000003E  4E4F                      53              TRAP    #15
+00000040                            54              
+00000040                            55              ; SET SECOND LINE POSITION
+00000040  103C 000B                 56              MOVE.B  #11,D0
+Line 57 ERROR: Undefined symbol
+00000044  323C BD16                 57              MOVE.W  #VIDASCORDS,D1
+00000048  4E4F                      58              TRAP    #15
+0000004A                            59              
+0000004A                            60              ; PRINT SECOND LINE
+0000004A  43F9 000000BC             61              LEA     .TXT2,A1
+00000050  4281                      62              CLR.L   D1
+Line 63 ERROR: Undefined symbol
+00000052  3239 004DBD16             63              MOVE.W  (VIDAS),D1
+00000058  103C 0011                 64              MOVE.B  #17,D0
+0000005C  4E4F                      65              TRAP    #15
+0000005E                            66              
+0000005E                            67              ; SET THIRD LINE POSITION
+0000005E  103C 000B                 68              MOVE.B  #11,D0
+Line 69 ERROR: Undefined symbol
+00000062  323C BD16                 69              MOVE.W  #FPSCORDS,D1
+00000066  4E4F                      70              TRAP    #15
+00000068                            71              
+00000068                            72              ; PRINT THIRD LINE
+00000068  43F9 000000C4             73              LEA     .TXT3,A1
+Line 74 ERROR: Undefined symbol
+0000006E  223C 004DBD16             74              MOVE.L  #SCRFPS,D1
+00000074  103C 0011                 75              MOVE.B  #17,D0
+00000078  4E4F                      76              TRAP    #15
+0000007A                            77              
+0000007A                            78              ; SET FOURTH LINE POSITION
+0000007A  103C 000B                 79              MOVE.B  #11,D0
+Line 80 ERROR: Invalid syntax
+0000007E                            80              MOVE.W  #FPSCORDS+$0900,D1
+0000007E  4E4F                      81              TRAP    #15
+00000080                            82              
+00000080                            83              ; PRINT FOURTH LINE
+00000080  43F9 000000CB             84              LEA     .TXT4,A1
+00000086  4281                      85              CLR.L   D1
+Line 86 ERROR: Undefined symbol
+00000088  1239 004DBD16             86              MOVE.B  (FPSCT),D1
+0000008E  103C 0011                 87              MOVE.B  #17,D0
+00000092  4E4F                      88              TRAP    #15
+00000094                            89              
+00000094                            90              ; SET FIFTH LINE POSITION
+00000094  103C 000B                 91              MOVE.B  #11,D0
+Line 92 ERROR: Invalid syntax
+00000098                            92              MOVE.W  #FPSCORDS+$1A00,D1
+00000098  4E4F                      93              TRAP    #15
+0000009A                            94              
+0000009A                            95              ; PRINT FIFTH LINE
+0000009A  43F9 000000DA             96              LEA     .TXT5,A1
+000000A0  103C 000E                 97              MOVE.B  #14,D0
+000000A4  4E4F                      98              TRAP    #15
+000000A6                            99              
+000000A6  4CDF 0203                100              MOVEM.L (A7)+,D0-D1/A1
+000000AA                           101              
+000000AA  4E75                     102              RTS
+000000AC                           103              
+Line 104 ERROR: Symbol value differs between first and second pass
+000000AC= 53 43 4F 52 45 3A 20     104  .TXT1       DC.B    'SCORE: ',0
+Line 105 ERROR: Symbol value differs between first and second pass
+000000B3= 56 49 44 41 53 3A 20     105  .TXT2       DC.B    'VIDAS: ',0
+Line 106 ERROR: Symbol value differs between first and second pass
+000000BA= 47 4F 41 4C 3A 20        106  .TXT3       DC.B    'GOAL: ',0
+Line 107 ERROR: Symbol value differs between first and second pass
+000000C0= 46 50 53 20 2D 20 ...    107  .TXT4       DC.B    'FPS - ACTUAL: ',0
+Line 108 ERROR: Symbol value differs between first and second pass
+000000CE= 46 50 53                 108  .TXT5       DC.B    'FPS',0
+000000D2                           109              DS.W    0
+000000D2                           110  
+000000D2                           111              
+000000D2                           112              
+000000D2                           113              
+000000D2                           114  
+000000D2                           115  
+000000D2                           116  
+000000D2                           117  
+000000D2                           118  
+000000D2                           119  
+000000D2                           120  
+000000D2                           121  
+000000D2                           122  
+000000D2                           123  
+000000D2                           124  
+000000D2                           125  
+000000D2                           126  
+Line 127 WARNING: END directive missing, starting address not set
+
+17 errors detected
+1 warning generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+SCOINIT             0
+SCOPLOT             12
+SCOPLOT:TXT1        B4
+SCOPLOT:TXT2        BC
+SCOPLOT:TXT3        C4
+SCOPLOT:TXT4        CB
+SCOPLOT:TXT5        DA
+SCOUPD              10
